@@ -1,0 +1,16 @@
+{
+    "name": "api-gateway-lite",
+    "version": "1.0.0",
+    "description": "A lightweight API gateway with JWT authentication, rate limiting, and role based access control",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "node --watch server.js"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.21.0",
+        "express-rate-limit": "^7.4.0",
+        "jsonwebtoken": "^9.0.2"
+    }
+}
