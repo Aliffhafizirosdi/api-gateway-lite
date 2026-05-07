@@ -1,119 +1,60 @@
-# API Gateway Lite
+# 🚀 API Gateway Lite
 
-A lightweight API gateway built with Node.js and Express that handles authentication, rate limiting, and role based access control out of the box. Designed as a boilerplate for backend developers who need a quick and secure API setup without the complexity of full scale gateway solutions.
+Lightweight API gateway with JWT authentication and rate limiting designed for microservices architecture.
 
-## Features
+![Project Status](https://img.shields.io/badge/Status-Completed-success)
+![License](https://img.shields.io/badge/License-MIT-blue)
 
-- JWT based authentication with token expiry
-- Rate limiting to prevent abuse (100 requests per 15 minutes per IP)
-- Role based access control (admin and user roles)
-- Request logging with in memory storage
-- Admin dashboard endpoints for viewing logs and traffic stats
-- Health check endpoint for monitoring
-- Clean error handling with helpful messages
-- CORS enabled for frontend integration
+---
 
-## How It Works
+## 🌟 Features
 
-```mermaid
-flowchart TD
-    A[Client Request] --> B[Rate Limiter]
-    B -->|Exceeded| C[429 Too Many Requests]
-    B -->|Allowed| D[Request Logger]
-    D --> E{Requires Auth?}
-    E -->|No| F[Public Endpoint]
-    E -->|Yes| G[JWT Verification]
-    G -->|Invalid| H[401 Unauthorized]
-    G -->|Valid| I{Role Check}
-    I -->|Insufficient| J[403 Forbidden]
-    I -->|Authorized| K[Protected Endpoint]
-    K --> L[JSON Response]
-    F --> L
-```
+- [x] JWT-based authentication middleware\n- [x] Configurable rate limiting per route\n- [x] Route proxying to downstream services
 
-## Getting Started
+## 🛠️ Tech Stack
 
-### Prerequisites
+- **Node.js**\n- **Express**\n- **JWT**\n- **Rate Limiter**
 
-- Node.js 18 or higher
-- npm
+---
 
-### Installation
+## 🚀 How to Download & Run
 
-```bash
-git clone https://github.com/Darkshaz/api-gateway-lite.git
-cd api-gateway-lite
-npm install
-npm start
-```
+Follow these steps to set up the project on your local machine.
 
-The server will start on `http://localhost:3000`
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Aliffhafizirosdi/api-gateway-lite.git
+   ```
+2. Navigate to the directory:
+   ```bash
+   cd api-gateway-lite
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the server:
+   ```bash
+   node server.js
+   ```
+   *(Or use `npm run dev` if configured)*
 
-## Usage
+---
 
-### Step 1: Check the Gateway Status
+## 💻 Code Structure
 
-```bash
-curl http://localhost:3000/
-```
+A quick overview of the main files in this repository:
 
-### Step 2: Login to Get a Token
+- `index.html` / `app.py` / `server.js` - Entry point of the application
+- `style.css` - Main stylesheet
+- `app.js` / `scripts/` - Main logic and interactions
 
-```bash
-curl -X POST http://localhost:3000/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"username": "admin", "password": "admin123"}'
-```
+---
 
-This returns a JWT token that is valid for 1 hour.
+## 👤 Author
 
-### Step 3: Access Protected Endpoints
+**Aliff Hafizi**
+- Website: [aliffhafizi.my](https://www.aliffhafizi.my)
+- GitHub: [@Aliffhafizirosdi](https://github.com/Aliffhafizirosdi)
 
-```bash
-curl http://localhost:3000/api/profile \
-  -H "Authorization: Bearer YOUR_TOKEN_HERE"
-```
-
-### Step 4: Admin Only Endpoints
-
-```bash
-curl http://localhost:3000/admin/logs \
-  -H "Authorization: Bearer YOUR_ADMIN_TOKEN"
-```
-
-## API Endpoints
-
-| Method | Endpoint | Auth | Role | Description |
-|--------|----------|------|------|-------------|
-| GET | `/` | No | Any | Gateway info and available endpoints |
-| GET | `/health` | No | Any | Health check with uptime |
-| POST | `/auth/login` | No | Any | Login and receive JWT token |
-| GET | `/api/profile` | Yes | Any | View your profile data |
-| GET | `/api/data` | Yes | Any | Access protected sample data |
-| GET | `/admin/logs` | Yes | Admin | View recent request logs |
-| GET | `/admin/stats` | Yes | Admin | View traffic statistics |
-
-## Test Accounts
-
-| Username | Password | Role |
-|----------|----------|------|
-| admin | admin123 | admin |
-| user | user123 | user |
-
-## Environment Variables
-
-| Variable | Default | Description |
-|----------|---------|-------------|
-| PORT | 3000 | Server port |
-| JWT_SECRET | (built in) | Secret key for signing tokens |
-
-## Tech Stack
-
-- **Runtime:** Node.js
-- **Framework:** Express
-- **Auth:** JSON Web Tokens (jsonwebtoken)
-- **Security:** express-rate-limit, CORS
-
-## License
-
-MIT License
+*If you found this project helpful, please consider giving it a ⭐ on GitHub!*
